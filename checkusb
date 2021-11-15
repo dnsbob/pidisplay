@@ -1,0 +1,74 @@
+#!/bin/bash
+# checkusb
+
+# get $PI_USB_DIR from .profile
+source ~/.profile
+
+blkid /dev/sda1
+foundusb=$?
+if [ "X0" = "X$foundusb" ]; then
+
+  echo ""
+  echo ""
+  echo ""
+  echo `date`"  $0  found usb, current video is"
+  mkdir -p /root/current
+  ls -l /root/current/
+  mount /dev/sda1 /mnt
+  echo `date`"  $0  mounted usb, file on usb is:"
+  ls -l /mnt/$PI_USB_DIR/*.mp4
+  foundfile=$?
+  if [ "X0" = "X$foundfile" ]; then
+    echo `date`"  $0  found video file"
+    mkdir -p /root/new
+    echo "clear any files in /root/new"
+    ls -l /root/new/*
+    newnotempty=$?
+    if [ "X0" = "X$newnotempty" ]; then
+      rm /root/new/*
+    fi
+    rsync -t --progress /mnt/$PI_USB_DIR/*.mp4 /root/new
+    echo `date`"  $0  copied file, new video is"
+    ls -l /root/new/
+  fi
+  umount /mnt
+  echo `date`"  $0  unmounted usb"
+fi
+
+if [ "X0" = "X$foundfile" ]; then
+  # test new file
+  /root/bin/play /root/new/*.mp4
+  fileok=$?
+  if [ "X0" = "X$fileok" ]; then
+    echo "no errors found"
+  else
+    echo "omxplayer reported an error, but you decide if it is ok"
+  fi
+  blkid /dev/sda1
+  foundusb=$?
+  if [ "X0" = "X$foundusb" ]; then
+    echo "if video is ok, unplug usb now (waiting a few seconds...)"
+    sleep 5
+  fi
+  blkid /dev/sda1
+  foundusb=$?
+  if [ "X0" = "X$foundusb" ]; then
+    echo "usb still plugged in, reject the video, keep playing the old video"
+  else
+    echo "usb was unplugged, keep the new video"
+    mkdir -p /root/old
+    echo "clear any files in /root/old"
+    ls -l /root/old/*
+    oldnotempty=$?
+    if [ "X0" = "X$oldnotempty" ]; then
+      rm /root/old/*
+    fi
+    mv /root/current/* /root/old/
+    mv /root/new/* /root/current/
+    echo "moved new file into place"
+    ls -l /root/current/
+  fi
+else
+  echo "no file found on usb ..."
+  sleep 5
+fi

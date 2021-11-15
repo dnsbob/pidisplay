@@ -1,0 +1,11 @@
+#!/bin/bash
+# displayloop
+# loop forever
+foundusb=0
+while [ $foundusb ]
+do
+  /root/bin/play /root/current/*.mp4
+  blkid /dev/sda1
+  foundusb=$?
+done
+echo "found usb, stop displayloop"

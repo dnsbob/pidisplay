@@ -1,0 +1,19 @@
+#!/bin/bash
+# clearconsole [secondstowait]
+
+if [ -f /root/noclear ]; then
+  echo "found noclear, exit"
+  exit
+fi
+
+if [ "X" != "X$1" ]; then
+  sleep $1
+fi
+
+# by sending 100 blank lines
+for i in {0..99}
+do
+  echo -e '\f'
+done >> /dev/console
+
+setterm -cursor off >> /dev/console
