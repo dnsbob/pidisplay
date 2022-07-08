@@ -1,6 +1,15 @@
 #!/bin/bash
 # displayloop
 # loop forever
+
+# avoid a gap by using --loop
+# but then cannot break by inserting usb
+
+/root/bin/play --loop /root/current/*.mp4
+
+exit 0
+
+
 foundusb=0
 while [ $foundusb ]
 do
