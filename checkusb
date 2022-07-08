@@ -48,7 +48,7 @@ if [ "X0" = "X$foundfile" ]; then
   foundusb=$?
   if [ "X0" = "X$foundusb" ]; then
     echo "if video is ok, unplug usb now (waiting a few seconds...)"
-    sleep 5
+    sleep 10
   fi
   blkid /dev/sda1
   foundusb=$?
@@ -70,5 +70,5 @@ if [ "X0" = "X$foundfile" ]; then
   fi
 else
   echo "no file found on usb ..."
-  sleep 5
 fi
+sleep 5

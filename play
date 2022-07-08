@@ -1,6 +1,3 @@
 #!/bin/bash
 
-/root/bin/clearconsole
-MPLAYER_VERBOSE=0
-mplayer -nosound -vo fbdev2 "$@"
-
+omxplayer --loop "$@"
