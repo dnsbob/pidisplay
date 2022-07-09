@@ -3,12 +3,6 @@
 # part of pidisplay
 # call this from rc.local or another startup method
 
-# Print the IP address
-_IP=$(hostname -I) || true
-if [ "$_IP" ]; then
-  printf "My IP address is %s\n" "$_IP"
-fi
-
 /root/bin/checkusb
 /root/bin/displayloop >> /var/log/displayloop.log 2>&1 < /dev/null &
 # with --loop for omxplayer, clear console is not needed
