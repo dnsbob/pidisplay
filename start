@@ -11,6 +11,7 @@ fi
 
 /root/bin/checkusb
 /root/bin/displayloop >> /var/log/displayloop.log 2>&1 < /dev/null &
-/root/bin/clearconsole 5 &
+# with --loop for omxplayer, clear console is not needed
+#/root/bin/clearconsole 5 &
 
 exit 0
