@@ -1,4 +1,7 @@
 # pidisplay
+This branch is for Raspberry Pi Debian Trixie 64-bit    
+Currently works on a Raspberry Pi Zero 2 W    
+
 Use a raspberry pi to display a video in a loop.  If there is a USB drive inserted when it is booted, copy a new video from the drive.  The new video must be in 'mydirectoryname' on the USB drive.
 
 Setup:
@@ -8,11 +11,17 @@ PI_USB_DIR=mydirectoryname
 create /root/bin and copy these files there:  
 ```
 checkusb
-clearconsole
 displayloop
 play
 start
 ```
+
+Create a user:    
+```
+useradd -c 'play video in a loop' -m -s /bin/bash -U pidisplay
+```
+
+
 
 Add to /etc/rc.local before the 'exit 0' line:
 ```
