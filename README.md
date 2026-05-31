@@ -21,14 +21,12 @@ Create a user:
 useradd -c 'play video in a loop' -m -s /bin/bash -U pidisplay
 ```
 
+Create and start a new systemd service:
 
-
-Add to /etc/rc.local before the 'exit 0' line:
 ```
-/root/bin/start
+sudo cp pidisplay.service /usr/lib/systemd/system/pidisplay.service
+sudo systemctl enable --now pidisplay.service
 ```
 
 For security, the pi should be configured not to auto-login, and not start he desktop.
-A "pi zero" is sufficient.
-Needs the older "buster" version of the operating system.  omxplayer does not seem to work on the newer "bullseye" version, and nothing else works for me.
-2022/7/7
+A "pi zero 2" is sufficient.  A "pi zero" might work.

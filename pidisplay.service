@@ -1,0 +1,17 @@
+# /usr/lib/systemd/system/pidisplay.service
+[Unit]
+Description=Pi Display - play a video in a loop
+# Documentation=
+# https://github.com/dnsbob/pidisplay
+After=network.target
+ConditionPathExists=!/home/pidisplay/stop
+
+[Service]
+Environment="DISPLAY=:0"
+User=pidisplay
+EnvironmentFile=-/home/pidisplay/pidisplay.env
+WorkingDirectory=/home/pidisplay
+ExecStart=/home/pidisplay/bin/start
+
+[Install]
+WantedBy=multi-user.target

@@ -1,5 +1,6 @@
 #!/bin/bash
 # clearconsole [secondstowait]
+# not used in some versions
 
 if [ -f /root/noclear ]; then
   echo "found noclear, exit"
