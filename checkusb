@@ -4,9 +4,19 @@
 # get $PI_USB_DIR from file
 source /home/pididsplay/pidisplay.env
 
+dev=none
 sudo blkid /dev/sda1
 foundusb=$?
 if [ "X0" = "X$foundusb" ]; then
+  dev=/dev/sda1
+else
+  sudo blkid /dev/sda
+  foundusb=$?
+  if [ "X0" = "X$foundusb" ]; then
+    dev=/dev/sda
+  fi
+fi
+if [ $dev != "none" ]; then
 
   echo ""
   echo ""
@@ -14,7 +24,7 @@ if [ "X0" = "X$foundusb" ]; then
   echo `date`"  $0  found usb, current video is"
   mkdir -p /home/pidisplay/current
   ls -l /home/pidisplay/current/
-  sudo mount /dev/sda1 /mnt
+  sudo mount $dev /mnt
   echo `date`"  $0  mounted usb, file on usb is:"
   ls -l /mnt/$PI_USB_DIR/*.mp4
   foundfile=$?
