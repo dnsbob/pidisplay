@@ -36,6 +36,18 @@ sudo cp pidisplay.service /usr/lib/systemd/system/pidisplay.service
 sudo systemctl enable --now pidisplay.service
 ```
 
+Create log file dir and file:
+```
+sudo mkdir /var/log/pidisplay
+sudo chown pidisplay /var/log/pidisplay
+```
+
+Update sudoers to allow a few commands without a password:
+```
+sudo cp 314_pidisplay /etc/sudoers.d/314_pidisplay
+sudo chmod 440 /etc/sudoers.d/314_pidisplay
+```
+
 For security:    
 Turn off automatic login and set boot to terminal mode using
 ```
