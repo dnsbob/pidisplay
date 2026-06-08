@@ -28,5 +28,10 @@ sudo cp pidisplay.service /usr/lib/systemd/system/pidisplay.service
 sudo systemctl enable --now pidisplay.service
 ```
 
-For security, the pi should be configured not to auto-login, and not start he desktop.
+For security:
+Turn off automatic login and set boot to terminal mode using
+```
+sudo raspi-config
+```
+
 A "pi zero 2" is sufficient.  A "pi zero" might work.
