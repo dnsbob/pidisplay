@@ -1,8 +1,8 @@
 #!/bin/bash
 # checkusb
 
-# get $PI_USB_DIR from .profile
-source ~/.profile
+# get $PI_USB_DIR from file
+source /home/pididsplay/pidisplay.env
 
 sudo blkid /dev/sda1
 foundusb=$?
