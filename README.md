@@ -29,7 +29,7 @@ cd pidisplay
 
 If you do not have a "pidisplay" user, create it and set the password (might need to edit the list of groups):       
 ```
-sudo useradd -c 'play video in a loop' -m -s /bin/bash -U -G adm,dialout,sudo,video,render pidisplay
+sudo useradd -c 'play video in a loop' -m -s /bin/bash -U -G video pidisplay
 sudo passwd pidisplay
 ```
 
@@ -55,6 +55,7 @@ create /home/pidisplay/bin and copy these files there:
 ```
 sudo mkdir /home/pidisplay/bin
 sudo cp -p checkusb displayloop play start /home/pidisplay/bin
+sudo chown -R pidisplay /home/pidisplay/bin/
 ```
 
 Create and start a new systemd service:
