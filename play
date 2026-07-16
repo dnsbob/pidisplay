@@ -4,4 +4,5 @@
 
 # newer os version, use vlc
 # if input is /dev/null, it exits immediately, but /dev/zero works
-sudo -u pidisplay vlc --no-audio --repeat --fullscreen --no-video-title-show "$@" < /dev/zero
+#sudo -u pidisplay vlc --no-audio --repeat --fullscreen --no-video-title-show "$@" < /dev/zero
+vlc --no-audio --repeat --fullscreen --no-video-title-show "$@" < /dev/zero
