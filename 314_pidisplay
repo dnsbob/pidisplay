@@ -1,0 +1,3 @@
+# 314_pidisplay
+# allow mounting a USB drive without a password
+pidisplay ALL = NOPASSWD: /usr/bin/mount,/usr/bin/umount,/usr/sbin/blkid

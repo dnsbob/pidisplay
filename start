@@ -3,10 +3,10 @@
 # part of pidisplay
 # call this from rc.local or another startup method
 
-/root/bin/checkusb
+/home/pidisplay/bin/checkusb 2>&1 | tee -a /var/log/pidisplay/checkusb.log
 # for debugging, uncomment the output redirect
-/root/bin/displayloop   ## >> /var/log/displayloop.log 2>&1 < /dev/null &
+/home/pidisplay/bin/displayloop   ## >> /var/log/displayloop.log 2>&1 < /dev/null &
 # with --loop, clear console is not needed
-#/root/bin/clearconsole 5 &
+#/home/pidisplay/bin/clearconsole 5 &
 
 exit 0

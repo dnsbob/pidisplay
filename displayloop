@@ -2,5 +2,5 @@
 # displayloop
 # loop forever
 
-/root/bin/play /root/current/*.mp4
+/home/pidisplay/bin/play /home/pidisplay/current/*.mp4
 
